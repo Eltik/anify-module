@@ -1,0 +1,25 @@
+{
+    "devDependencies": {
+        "@types/node": "^18.16.2",
+        "@typescript-eslint/eslint-plugin": "^5.59.2",
+        "prettier": "2.8.8"
+    },
+    "name": "anify-module",
+    "description": "Anify module",
+    "version": "1.0.0",
+    "scripts": {
+        "eslint": "eslint --ext .js --fix",
+        "prettier": "prettier --write .",
+        "lint": "npm run prettier && npm run eslint"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Eltik/anify-module.git"
+    },
+    "author": "eltik",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Eltik/anify-module/issues"
+    },
+    "homepage": "https://github.com/Eltik/anify-module#readme"
+}

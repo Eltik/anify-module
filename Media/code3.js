@@ -1,9 +1,7 @@
 var removeScripts = false;
 var allowExternalScripts = true;
 var usesApi = true;
-var imports = [
-    "https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js",
-];
+var imports = ["https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"];
 
 function logic() {
     const myElement = document.getElementById("json-result");
@@ -21,12 +19,8 @@ function logic() {
             }
         }
         let base64 = myJsonObject["sources"];
-        let key = getFile(
-            "https://raw.githubusercontent.com/enimax-anime/key/e6/key.txt"
-        );
-        decryptedSources = CryptoJS.AES.decrypt(base64, key).toString(
-            CryptoJS.enc.Utf8
-        );
+        let key = getFile("https://raw.githubusercontent.com/enimax-anime/key/e6/key.txt");
+        decryptedSources = CryptoJS.AES.decrypt(base64, key).toString(CryptoJS.enc.Utf8);
         let choutenDiv = document.getElementById("chouten");
         let resultElement = document.createElement("p");
         resultElement.innerText = JSON.stringify({
@@ -57,11 +51,7 @@ function logic() {
                         }
                     })
                     .filter((elements) => {
-                        return (
-                            elements != null &&
-                            elements !== undefined &&
-                            elements !== ""
-                        );
+                        return elements != null && elements !== undefined && elements !== "";
                     }),
             },
             nextUrl: null,
@@ -98,11 +88,7 @@ function logic() {
                         }
                     })
                     .filter((elements) => {
-                        return (
-                            elements != null &&
-                            elements !== undefined &&
-                            elements !== ""
-                        );
+                        return elements != null && elements !== undefined && elements !== "";
                     }),
             },
             nextUrl: null,

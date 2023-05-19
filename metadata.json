@@ -1,17 +1,17 @@
 {
-    "id": "180c4f315e63de22205b31cfa281a3b45327859d9e4b0fd35b4a119c74637a05",
+    "id": "180c4f315e63de22205b31cfa281a3b45327859d9e4b0fd35b4a119c74637a06",
     "type": "source",
-    "subtypes": ["anime"],
-    "name": "Consumet",
+    "subtypes": ["anime", "manga"],
+    "name": "Anify",
     "version": "0.1.0",
     "formatVersion": 1,
     "updateUrl": "https://raw.githubusercontent.com/adolar0042/MyModule/main/module.json",
     "general": {
-      "author": "illusions",
-      "description": "A module That uses the consumet api to get anime sources",
+      "author": "Eltik",
+      "description": "A module that uses Anify to get anime and manga sources.",
       "lang": ["en-US"],
       "baseURL": "https://anify.tv",
-      "bgColor":  "#ffcb3d",
+      "bgColor":  "#4CB875",
       "fgColor": "#000000"
     }
 }

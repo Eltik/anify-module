@@ -1,0 +1,10 @@
+node_modules
+*.d.ts
+*.md
+*.json
+*.lock
+*.yml
+*.yaml
+Dockerfile
+Dockerfile.*
+.eslintrc
