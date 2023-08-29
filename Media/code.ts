@@ -1,5 +1,5 @@
-async function logic(payload) {
-    const servers = [];
+async function logic(payload: BasePayload) {
+    const servers: MediaDataResult[] = [];
 
     servers.push(
         {
@@ -14,7 +14,7 @@ async function logic(payload) {
     });
 }
 
-async function getSource(payload) {
+async function getSource(payload: any) {
     const data = (await sendRequest(payload.query, {}));
 
     sendResult({
