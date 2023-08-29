@@ -1,9 +1,9 @@
-async function logic(payload) {
+async function logic(payload: BasePayload) {
     const data = await sendRequest(`https://api.anify.tv/search?query=${encodeURIComponent(payload.query)}&type=anime&apikey=a29078ed5ace232f708c0f2851530a61`, {});
 
     console.log(JSON.stringify(data));
 
-    const titles = [];
+    const titles: SearchData = [];
 
     for (let i = 0; i < data.length; i++) {
         const hasSub = true;

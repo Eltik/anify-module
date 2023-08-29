@@ -11,20 +11,18 @@ function logic() {
     resultElement.innerText = JSON.stringify({
         result: {
             skips:
-                data.skipTimes != null
-                    ? [
-                          {
-                              start: myJsonObject["intro"]["start"],
-                              end: myJsonObject["intro"]["end"],
-                              type: "Opening",
-                          },
-                          {
-                              start: myJsonObject["outro"]["start"],
-                              end: myJsonObject["outro"]["end"],
-                              type: "Ending",
-                          },
-                      ]
-                    : [],
+            [
+                {
+                    start: myJsonObject["intro"]["start"],
+                    end: myJsonObject["intro"]["end"],
+                    type: "Opening",
+                },
+                {
+                    start: myJsonObject["outro"]["start"],
+                    end: myJsonObject["outro"]["end"],
+                    type: "Ending",
+                },
+            ],
             sources: data.sources
                 .sort((a, b) => {
                     if (a.quality === "auto" || a.quality === "default") {

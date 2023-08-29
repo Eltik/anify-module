@@ -1,9 +1,9 @@
-async function logic(payload) {
+async function logic(payload: BasePayload) {
     const data = await sendRequest("https://api.anify.tv/seasonal?type=anime&apikey=a29078ed5ace232f708c0f2851530a61", {});
 
     console.log(JSON.stringify(data));
 
-    let spotlight_data = []
+    let spotlight_data: Array<HompageData> = []
     for (let i = 0; i < data.seasonal.length; i++) {
         let item = data.seasonal[i];
 
@@ -27,7 +27,7 @@ async function logic(payload) {
 
     const recents = await sendRequest("https://api.anify.tv/recent?type=anime&apikey=a29078ed5ace232f708c0f2851530a61", {});
 
-    let recents_data = [];
+    let recents_data: Array<HompageData> = [];
 
     for (let i = 0; i < recents?.length; i++) {
         let item = recents[i];
@@ -52,7 +52,7 @@ async function logic(payload) {
     }
     
 
-    let new_data = [];
+    let new_data: Array<HompageData> = [];
     for (let i = 0; i < data.trending?.length; i++) {
         let item = data.trending[i];
 
@@ -78,7 +78,7 @@ async function logic(payload) {
     // #main-content > section:nth-child(8)
     let upcoming_list = await sendRequest("https://api.anify.tv/schedule?apikey=a29078ed5ace232f708c0f2851530a61", {});
 
-    let upcoming_data = [];
+    let upcoming_data: Array<HompageData> = [];
 
     for (let i = 0; i < upcoming_list?.length; i++) {
         let item = upcoming_list[i];
@@ -103,7 +103,7 @@ async function logic(payload) {
     }
 
 
-    let top_viewed_data = [];
+    let top_viewed_data: Array<HompageData> = [];
     for (let i = 0; i < data.top?.length; i++) {
         let item = data.top[i];
 

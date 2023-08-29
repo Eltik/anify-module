@@ -1,4 +1,4 @@
-async function logic(payload) {
+async function logic(payload: BasePayload) {
     const data = await sendRequest(payload.query, {});
 
     const titles = {
@@ -37,10 +37,10 @@ async function logic(payload) {
 }
 
 
-async function getEpList(payload) {
+async function getEpList(payload: any) {
     const data = await sendRequest(payload.query, {});
 
-    const results = [];
+    const results: any[] = [];
 
     data.map((provider) => {
         results.push({
