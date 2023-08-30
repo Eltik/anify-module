@@ -1,7 +1,7 @@
-async function logic(payload) {
-    const data = await sendRequest("https://api.anify.tv/seasonal?type=anime&apikey=a29078ed5ace232f708c0f2851530a61", {});
+async function logic(payload: BasePayload) {
+    const data = JSON.parse(await sendRequest("https://api.anify.tv/seasonal?type=anime&apikey=a29078ed5ace232f708c0f2851530a61", {}));
 
-    let spotlight_data = []
+    let spotlight_data: Array<HompageData> = []
     for (let i = 0; i < data.seasonal.length; i++) {
         let item = data.seasonal[i];
 
@@ -23,9 +23,9 @@ async function logic(payload) {
         )
     }
 
-    const recents = await sendRequest("https://api.anify.tv/recent?type=anime&apikey=a29078ed5ace232f708c0f2851530a61", {});
+    const recents = JSON.parse(await sendRequest("https://api.anify.tv/recent?type=anime&apikey=a29078ed5ace232f708c0f2851530a61", {}));
 
-    let recents_data = [];
+    let recents_data: Array<HompageData> = [];
 
     for (let i = 0; i < recents?.length; i++) {
         let item = recents[i];
@@ -43,14 +43,14 @@ async function logic(payload) {
                 showIcon: false,
                 buttonText: "",
                 indicator: item.season,
-                current: String(item.episodes.latest?.latestEpisode ?? 0),
-                total: String(item.episodes.latest?.totalEpisodes ?? 0)
+                current: Number(item.episodes?.latest?.latestEpisode ?? 0),
+                total: Number(item.episodes?.latest?.totalEpisodes ?? 0)
             }
         )
     }
     
 
-    let new_data = [];
+    let new_data: Array<HompageData> = [];
     for (let i = 0; i < data.trending?.length; i++) {
         let item = data.trending[i];
 
@@ -67,14 +67,13 @@ async function logic(payload) {
                 showIcon: false,
                 buttonText: "",
                 indicator: item.season,
-                current: String(item.episodes.latest?.latestEpisode ?? 0),
-                total: String(item.episodes.latest?.totalEpisodes ?? 0)
+                current: Number(item.episodes?.latest?.latestEpisode ?? 0),
+                total: Number(item.episodes?.latest?.totalEpisodes ?? 0)
             }
         )
     }
 
-
-    let top_viewed_data = [];
+    let top_viewed_data: Array<HompageData> = [];
     for (let i = 0; i < data.top?.length; i++) {
         let item = data.top[i];
 
@@ -91,8 +90,8 @@ async function logic(payload) {
                 showIcon: false,
                 buttonText: "",
                 indicator: item.season,
-                current: String(item.episodes.latest?.latestEpisode ?? 0),
-                total: String(item.episodes.latest?.totalEpisodes ?? 0)
+                current: Number(item.episodes?.latest?.latestEpisode ?? 0),
+                total: Number(item.episodes?.latest?.totalEpisodes ?? 0)
             }
         )
     }

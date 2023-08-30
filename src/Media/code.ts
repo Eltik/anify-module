@@ -1,10 +1,10 @@
-async function logic(payload) {
-    const servers = [];
+async function logic(payload: BasePayload) {
+    const servers: MediaDataResult[] = [];
 
     servers.push(
         {
             title: "Sub",
-            list: payload.query
+            list: [{ url: String(payload.query), name: "Sub" }]
         }
     )
 
@@ -14,8 +14,8 @@ async function logic(payload) {
     });
 }
 
-async function getSource(payload) {
-    const data = (await sendRequest(payload.query, {}));
+async function getSource(payload: any) {
+    const data = JSON.parse(await sendRequest(payload.query, {}));
 
     sendResult({
         result: {
@@ -31,19 +31,20 @@ async function getSource(payload) {
                     type: "Ending",
                 },
             ],
-            sources: data.sources.map((source) => {
+            sources: data.sources.map((source: any) => {
                 return {
                     file: source.url,
                     type: "hls",
                     quality: source.quality,
                 };
             }),
-            subtitles: data.subtitles.map((subtitle) => {
+            subtitles: data.subtitles.map((subtitle: any) => {
                 return {
                     url: subtitle.url,
                     language: subtitle.lang
                 }
             }),
+            headers: data.headers
         },
         action: "video",
     }, true);

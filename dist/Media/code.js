@@ -1,22 +1,17 @@
-async function logic(payload: BasePayload) {
-    const servers: MediaDataResult[] = [];
-
-    servers.push(
-        {
-            title: "Sub",
-            list: payload.query
-        }
-    )
-
+"use strict";
+async function logic(payload) {
+    const servers = [];
+    servers.push({
+        title: "Sub",
+        list: [{ url: String(payload.query), name: "Sub" }]
+    });
     sendResult({
         result: servers,
         action: "server"
     });
 }
-
-async function getSource(payload: any) {
-    const data = (await sendRequest(payload.query, {}));
-
+async function getSource(payload) {
+    const data = JSON.parse(await sendRequest(payload.query, {}));
     sendResult({
         result: {
             skips: [
@@ -42,8 +37,9 @@ async function getSource(payload: any) {
                 return {
                     url: subtitle.url,
                     language: subtitle.lang
-                }
+                };
             }),
+            headers: data.headers
         },
         action: "video",
     }, true);

@@ -1,9 +1,9 @@
 async function logic(payload: BasePayload) {
-    const data = await sendRequest(payload.query, {});
+    const data = JSON.parse(await sendRequest(payload.query, {}));
 
     const titles = {
-        primary: data.titles.english ?? data.titles.romaji ?? data.titles.native ?? "",
-        secondary: data.titles.native ?? data.titles.romaji ?? data.titles.english ?? ""
+        primary: data.title?.english ?? data.title?.romaji ?? data.title?.native ?? "",
+        secondary: data.title?.native ?? data.title?.romaji ?? data.title?.english ?? ""
     };
 
     const description = data.description;
@@ -12,7 +12,7 @@ async function logic(payload: BasePayload) {
     const status = data.status;
 
     let totalMediaCount = data.totalEpisodes ?? 0;
-    let seasons = [];
+    const seasons: any[] = [];
 
     let nextUrl = "https://api.anify.tv/episodes/" + data.id + "?apikey=a29078ed5ace232f708c0f2851530a61";
 
@@ -38,14 +38,14 @@ async function logic(payload: BasePayload) {
 
 
 async function getEpList(payload: any) {
-    const data = await sendRequest(payload.query, {});
+    const data = JSON.parse(await sendRequest(payload.query, {}));
 
     const results: any[] = [];
 
-    data.map((provider) => {
+    data.map((provider: any) => {
         results.push({
             title: provider.providerId,
-            list: (provider.episodes ?? []).map((e) => {
+            list: (provider.episodes ?? []).map((e: any) => {
                     return {
                         url:
                             `https://api.anify.tv/sources?providerId=${provider.providerId}&watchId=${e.id}&episode=${e.episode}&id=${payload.query.split("/episodes/")[1].split("&apikey=")[0]}&subType=${"sub"}&apikey=a29078ed5ace232f708c0f2851530a61`,

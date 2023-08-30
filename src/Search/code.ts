@@ -1,14 +1,12 @@
-async function logic(payload) {
-    const data = await sendRequest(`https://api.anify.tv/search?query=${encodeURIComponent(payload.query)}&type=anime&apikey=a29078ed5ace232f708c0f2851530a61`, {});
+async function logic(payload: BasePayload) {
+    const data = JSON.parse(await sendRequest(`https://api.anify.tv/search?query=${encodeURIComponent(payload.query)}&type=anime&apikey=a29078ed5ace232f708c0f2851530a61`, {}));
 
-    console.log(JSON.stringify(data));
-
-    const titles = [];
+    const titles: SearchData = [];
 
     for (let i = 0; i < data.length; i++) {
         const hasSub = true;
         const hasDub = true;
-        const currentCount = data[i].episodes.latest?.latestEpisode ?? 0;
+        const currentCount = data[i].episodes?.latest?.latestEpisode ?? 0;
         const totalCount = data[i].totalEpisodes ?? 0;
 
         titles.push({
