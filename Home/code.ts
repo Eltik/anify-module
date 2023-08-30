@@ -75,34 +75,6 @@ async function logic(payload: BasePayload) {
         )
     }
 
-    // #main-content > section:nth-child(8)
-    let upcoming_list = await sendRequest("https://api.anify.tv/schedule?apikey=a29078ed5ace232f708c0f2851530a61", {});
-
-    let upcoming_data: Array<HompageData> = [];
-
-    for (let i = 0; i < upcoming_list?.length; i++) {
-        let item = upcoming_list[i];
-
-        upcoming_data.push(
-            {
-                url: `https://api.anify.tv/info/${item.id}?apikey=a29078ed5ace232f708c0f2851530a61`,
-                titles: {
-                    primary: item.title.english ?? item.title.romaji ?? item.title.native ?? "",
-                    secondary: item.title.native ?? item.title.romaji ?? item.title.english ?? ""
-                },
-                image: item.coverImage,
-                subtitle: "",
-                subtitleValue: [],
-                showIcon: false,
-                buttonText: "",
-                indicator: item.season,
-                current: String(item.episodes.latest?.latestEpisode ?? 0),
-                total: String(item.episodes.latest?.totalEpisodes ?? 0)
-            }
-        )
-    }
-
-
     let top_viewed_data: Array<HompageData> = [];
     for (let i = 0; i < data.top?.length; i++) {
         let item = data.top[i];
@@ -141,11 +113,6 @@ async function logic(payload: BasePayload) {
             type: "grid_2x",
             title: "Now on Zoro",
             data: new_data
-        },
-        {
-            type: "list",
-            title: "Top Upcoming",
-            data: upcoming_data
         },
         {
             type: "grid_3x",
